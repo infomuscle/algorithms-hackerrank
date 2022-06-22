@@ -31,8 +31,10 @@ l0 = ["bag", "sfe", "cbh", "cbh", "red"]
 l1 = ["corn", "horn", "dpso", "eqtp", "corn"]
 l2 = ["cbu", "bat", "cbu"]
 l3 = ["dba"]
+l4 = ["dba", "dba", "dba", "dba", "dba"]
 
 print(countFamilyLogins(l0))
 print(countFamilyLogins(l1))
 print(countFamilyLogins(l2))
 print(countFamilyLogins(l3))
+print(countFamilyLogins(l4))
