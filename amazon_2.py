@@ -4,21 +4,31 @@ def findMaximumSustainableClusterSize(processingPower, bootingPower, powerMax):
     front, rear = 0, 0
 
     max_k = 0
+    max_boot = bootingPower[0]
+    sum_process = processingPower[0]
     while rear < n:
         k = rear - front + 1
-        if net_power_consumption(processingPower[front:rear + 1], bootingPower[front: rear + 1], k) <= powerMax:
+        if net_power_consumption_new(sum_process, max_boot, k) <= powerMax:
             max_k = max(k, max_k)
             rear += 1
+            if rear < n:
+                max_boot = max(max_boot, bootingPower[rear])
+                sum_process += processingPower[rear]
         else:
             if rear > front:
                 front += 1
+                max_boot = max(bootingPower[front:rear + 1])
+                sum_process -= processingPower[front - 1]
             else:
                 rear += 1
+                if rear < n:
+                    max_boot = max(max_boot, bootingPower[rear])
+                    sum_process += processingPower[rear]
     return max_k
 
 
-def net_power_consumption(processingPower, bootingPower, k):
-    return max(bootingPower) + sum(processingPower) * k
+def net_power_consumption_new(sum_process, max_boot, k):
+    return max_boot + sum_process * k
 
 
 p0 = [2, 1, 3, 4, 5]
