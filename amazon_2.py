@@ -6,8 +6,8 @@ def findMaximumSustainableClusterSize(processingPower, bootingPower, powerMax):
     max_k = 0
     while rear < n:
         k = rear - front + 1
-        if net_power_consumption(processingPower[front:rear + 1], bootingPower[front: rear + 1], k) <= powerMax and k >= max_k:
-            max_k = k
+        if net_power_consumption(processingPower[front:rear + 1], bootingPower[front: rear + 1], k) <= powerMax:
+            max_k = max(k, max_k)
             rear += 1
         else:
             if rear > front:
